@@ -41,9 +41,7 @@ if ($conn->connect_error) {
             </div>
             <input class="btn btn-danger" type="submit" value="Thêm"/>
         </form>
-        
-        
-        <button class="btn btn-danger">Xóa hết</button>
+    
     </div>
     <br>
     <table class="table table-striped">
@@ -81,7 +79,7 @@ if ($result->num_rows > 0) {
         echo "<td>";
         echo "<button class=\"btn btn-danger\">Xong</button>";
         echo "<button class=\"btn btn-danger\">Chỉnh sửa</button>";
-        echo "<button class=\"btn btn-danger\">Xóa</button>";
+        echo "<a class=\"btn btn-danger\" href=\"/xoa.php?id=$row[id]\">Xóa</a>";
         echo "</td>";
 
         echo "</tr>";
