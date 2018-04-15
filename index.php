@@ -1,18 +1,6 @@
 <?php 
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "testdk";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-$conn->set_charset('utf8');
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
+include_once('connect.php');
 
 
 
@@ -77,8 +65,8 @@ if ($result->num_rows > 0) {
         echo "<td>$status</td>";
 
         echo "<td>";
-        echo "<button class=\"btn btn-danger\">Xong</button>";
-        echo "<button class=\"btn btn-danger\">Chỉnh sửa</button>";
+        echo "<a class=\"btn btn-danger\" href=\"/xong.php?id=$row[id]\">Xong</a>";
+        echo "<a class=\"btn btn-danger\" href=\"/sua.php?id=$row[id]\">Chỉnh sửa</a>";
         echo "<a class=\"btn btn-danger\" href=\"/xoa.php?id=$row[id]\">Xóa</a>";
         echo "</td>";
 
