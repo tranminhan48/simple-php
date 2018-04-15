@@ -1,3 +1,23 @@
+<?php 
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "testdk";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+$conn->set_charset('utf8');
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +29,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
+
 
 <div class="container">
     <h1>To-do List</h1>
@@ -32,7 +53,7 @@
             <th>Trạng thái</th>
             <th>Hành động</th>
         </thead>
-        <tr>
+        <!-- <tr>
             <td>1</td>
             <td>Ăn Sáng</td>
             <td>Chưa xong</td>
@@ -41,7 +62,35 @@
                 <button class="btn btn-danger">Chỉnh sửa</button>
                 <button class="btn btn-danger">Xóa</button>
             </td>
-        </tr>
+        </tr> -->
+
+        <?php 
+
+            $sql = "SELECT id, name, status FROM todo";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+        $status = $row['status'] == 0? 'Chưa xong' : 'Xong rồi';
+        echo "<tr>";
+        echo "<td>$row[id]</td>";
+        echo "<td>$row[name]</td>";
+        echo "<td>$status</td>";
+
+        echo "<td>";
+        echo "<button class=\"btn btn-danger\">Xong</button>";
+        echo "<button class=\"btn btn-danger\">Chỉnh sửa</button>";
+        echo "<button class=\"btn btn-danger\">Xóa</button>";
+        echo "</td>";
+
+        echo "</tr>";
+    }
+} else {
+    echo "0 results";
+}
+$conn->close();
+         ?>
     </table>
 </div>
 
