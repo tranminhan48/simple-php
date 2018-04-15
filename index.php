@@ -14,7 +14,14 @@
     <h1>To-do List</h1>
     <hr>
     <div>
-        <button class="btn btn-danger">Thêm</button>
+        <form action="/them.php" method="POST">
+            <div class="form-group">
+                <input type="text" name="todo" class="form-control">
+            </div>
+            <input class="btn btn-danger" type="submit" value="Thêm"/>
+        </form>
+        
+        
         <button class="btn btn-danger">Xóa hết</button>
     </div>
     <br>
